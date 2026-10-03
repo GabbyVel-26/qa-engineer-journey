@@ -1,0 +1,28 @@
+{
+  "name": "qa-engineer-journey",
+  "version": "1.0.0",
+  "description": "QA Engineering learning journey — manual QA to AI-assisted automation. Anchor app: Automation Exercise (UI + API)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:features": "gherkin-lint features/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabbyVel-26/qa-engineer-journey.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/GabbyVel-26/qa-engineer-journey/issues"
+  },
+  "homepage": "https://github.com/GabbyVel-26/qa-engineer-journey#readme",
+  "devDependencies": {
+    "gherkin-lint": "^4.2.4"
+  }
+}
