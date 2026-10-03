@@ -1,0 +1,20 @@
+# Node / Playwright
+node_modules/
+playwright-report/
+test-results/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Env / secrets
+.env
+.env.local
+
+# OS
+.DS_Store
+
+# Editor
+.vscode/
