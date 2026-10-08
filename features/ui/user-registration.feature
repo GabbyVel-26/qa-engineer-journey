@@ -5,9 +5,6 @@ Feature: User registration
   I want to create an account
   So that I can place orders and track them
 
-  Background:
-    Given the shopper is on the login and signup page
-
   @smoke @TC-01
   Scenario Outline: Register with valid data
     When the shopper signs up as "<name>" with "<email>"
@@ -22,8 +19,8 @@ Feature: User registration
 
   @negative @TC-02
   Scenario: Register with an already registered email
-    Given an account already exists for "john.doe+1@example.com"
-    When the shopper attempts to sign up with "john.doe+1@example.com"
+    Given a registered test account is available
+    When the shopper attempts to sign up with that account's email
     Then an error message "Email Address already exist!" is displayed
 
   @negative @TC-03
@@ -41,7 +38,7 @@ Feature: User registration
 
   @negative @validation @TC-04
   Scenario Outline: Validate missing mandatory fields shown error messages
-    Given the shopper has initiated signup with valid name and email
+    Given the shopper has initiated signup with a unique synthetic profile
     And the shopper is on the "ENTER ACCOUNT INFORMATION" page
     When the shopper tries to submit the form page leaving the "<field_to_skip>" field blank
     Then the shopper remains on the "ENTER ACCOUNT INFORMATION" page
