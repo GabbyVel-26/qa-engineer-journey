@@ -5,6 +5,9 @@ Feature: User registration
   I want to create an account
   So that I can place orders and track them
 
+  Background:
+    Given the shopper is on the login and signup page
+
   @smoke @TC-01
   Scenario Outline: Register with valid data
     When the shopper signs up as "<name>" with "<email>"
