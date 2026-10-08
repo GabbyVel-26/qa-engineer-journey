@@ -10,15 +10,15 @@ Feature: User registration
 
   @smoke @TC-01
   Scenario Outline: Register with valid data
-    When the shopper signs up as "<new_name>" with "<unique_email>"
+    When the shopper signs up as "<name>" with "<email>"
     And completes their account profile and address information with:
-    |name| email | password   | first_name   | last_name   | address   | country   | state   | city   | zipcode   | mobile_number   |
-    | <name> | <email> | <password> | <first_name> | <last_name> | <address> | <country> | <state> | <city> | <zipcode> | <mobile_number> |
+    | password   | first_name   | last_name   | address   | country   | state   | city   | zipcode   | mobile_number   |
+    | <password> | <first_name> | <last_name> | <address> | <country> | <state> | <city> | <zipcode> | <mobile_number> |
     Then the account should be successfully created with the confirmation message "ACCOUNT CREATED!"
 
     Examples:
-      |new_name|unique_email|name|email|password|first_name|last_name|address|country|state|city|zipcode|mobile_number|
-      |"John"|"john.doe+1@example.com"|"John"|"john.doe+1@example.com"|"password"|"John"|"Doe"|"123 Main St"|"United States"|"California"|"Los Angeles"|"90210"|"1234567890"|
+      |name|email|password|first_name|last_name|address|country|state|city|zipcode|mobile_number|
+      |"John"|"john.doe+1@example.com"|"password"|"John"|"Doe"|"123 Main St"|"United States"|"California"|"Los Angeles"|"90210"|"1234567890"|
 
   @negative @TC-02
   Scenario: Register with an already registered email
@@ -28,12 +28,12 @@ Feature: User registration
 
   @negative @TC-03
   Scenario Outline: Register with empty required data
-    When the shopper signs up with "<new_name>" and "<new_email>"
+    When the shopper signs up with "<name>" and "<email>"
     Then an error message "<error_message>" is displayed
     And the shopper remains on the registration page
 
     Examples:
-      | new_name | new_email | error_message |
+      | name | email | error_message |
       | " "    | " " | "Please fill up this field." |
       | "John" | "  " | "Please fill up this field." |
       | "  "   | "john.doe+1@example.com" |"Please fill up this field." |
