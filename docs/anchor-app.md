@@ -8,10 +8,10 @@ Chosen because it allows covering UI (Playwright) and API (Postman/Newman)
 with a single application, giving end-to-end coherence to the final framework.
 
 ## UI flows covered in this repo
-- [ ] User registration
-- [ ] Login / Logout
+- [X] User registration
+- [X] Login / Logout
 - [ ] Product search and filtering
-- [ ] Add to cart
+- [X] Add to cart
 - [ ] Checkout
 
 ## API endpoints covered in this repo
