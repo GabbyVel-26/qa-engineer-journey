@@ -26,7 +26,7 @@ Feature: User login and logout
       |an incorrect email and the valid test account password|
 
   @smoke @TC-04
-  Scenario: Log out of an account
+  Scenario: Log out of an user account
     Given the shopper is logged in with the configured test account
     When the shopper logs out
     Then the shopper should be redirected to the login page
