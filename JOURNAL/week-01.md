@@ -37,3 +37,16 @@ Why are these changes better?
 
 
 The other two feature files where drafted using IA, using the second prompt in "week-01-prompt.md" file, which reduced the time spent manually created them and invested the time in reviewed them.
+
+gitignore review:
+I asked to the IA, which reviewed the project current set up, it answered, the current gitignore set up was well for starters, but advise to check if variants as .env.test o .env.prod should be ignored too:
+    cat .gitignore is a read-only terminal command that prints the contents of the .gitignore file. Run it from the repository’s root folder—the folder containing .gitignore—to see the rules Git will use for that repository.
+
+    The rules are configured by editing .gitignore. Each non-comment line is a pattern telling Git which untracked files or folders to ignore. Lines beginning with # are comments. For example, node_modules/ ignores directories named node_modules, and *.pyc ignores files ending in .pyc.
+
+    Git applies these rules when checking or staging files, but .gitignore does not stop tracking files that were already committed or staged. You can check which rule matches a path with:
+            git check-ignore -v path/to/file
+
+    There are also other places for ignore rules: a repository-specific .git/info/exclude file and an optional global ignore file configured on your computer. Those are useful for local-only files you do not want to add to the shared repository rules.
+
+While resolving conflict on TC04 title (feature file), I forgot to commit second branch changes, so when I tried to merge with main I got an error: Please commit your changes or stash them before you merge. I did not know the command to change to the second branch and commit the latest changes, so I asked the AI which command should use, and introduced a new command: git switch branch-name (and to create it: git switch -c branch-name, to know in which branch are: git branch --show-current, temporal saving: git stash)
