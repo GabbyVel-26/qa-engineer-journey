@@ -1,6 +1,7 @@
-1. Review this scenario: is it declarative, one behavior, with a clear expected outcome? Suggest improvements and explain why.
+## AI prompts used
+   ## 1. Review this scenario: is it declarative, one behavior, with a clear expected outcome? Suggest improvements and explain why.
 
-2. You are a senior QA engineer who writes Gherkin.
+   ## 2. You are a senior QA engineer who writes Gherkin.
       Context: anchor app is automationexercise.com. I'm converting the site's
       published test cases into Gherkin scenarios for my repo.
 
@@ -108,3 +109,5 @@
       10. Verify that user is navigated to login page
 
       Output: the .feature content in /features/ui/, then (1) a list of assumptions you made  (messages, field names) that I must verify manually, and (2) two extra negative scenarios the source cases don't cover.
+
+   ## Evaluate this commit history as if you were a technical recruiter: what does it say about how I work? (paste your `git log --oneline`)
