@@ -5,27 +5,29 @@ Feature: Checkout and Order Placement
   I want to complete my purchase efficiently
   So that I can receive my ordered products and access my invoices
 
-  Background:
-    Given a shopper has items in their shopping cart
-
   # --- POSITIVE FLOWS (AUTHENTICATION & CHECKOUT) ---
 
   @smoke @TC-14
-  Scenario: Place order by registering during checkout
+  Scenario: Place an order after registering during checkout
+    Given the shopper has items in their cart
     When the shopper registers for an account during the checkout process
-    And the shopper completes the purchase
+    And places their order
     Then the order should be successfully placed with the confirmation message "checkout.success_message"
 
   @smoke @TC-15
-  Scenario: Place order as a newly registered shopper
-    Given the shopper has just registered and logged in
-    When the shopper completes the purchase
+  Scenario: Place an order as a newly registered shopper
+    Given the shopper has just registered
+    And has items in their cart
+    When the shopper proceeds to checkout
+    And places their order
     Then the order should be successfully placed with the confirmation message "checkout.success_message"
 
   @smoke @TC-16
   Scenario: Place order as a returning shopper
-    Given the shopper is logged into an existing account
-    When the shopper completes the purchase
+    Given the shopper is signed in
+    And has items in their cart
+    When the shopper proceeds to checkout
+    And the shopper places the order
     Then the order should be successfully placed with the confirmation message "checkout.success_message"
 
   # --- VALIDATIONS & DATA INTEGRITY ---
@@ -33,31 +35,33 @@ Feature: Checkout and Order Placement
   @smoke @validation @TC-23
   Scenario: Verify delivery and billing address matching during checkout
     Given the shopper has a profile with distinct delivery and billing addresses
-    When the shopper views their checkout summary
+    And the shopper has items in their cart
+    When the shopper proceeds to checkout
     Then the displayed delivery and billing addresses should match their profile
 
   @smoke @TC-24
   Scenario: Download invoice after completing a purchase order
     Given the shopper has successfully placed an order
     When the shopper downloads their order invoice
-    Then the downloaded invoice file should be valid file with accurate order details
+    Then the downloaded invoice file should be a valid file with accurate order details
 
   # --- NEGATIVE FLOWS ---
 
   @negative @TC-14-N1
-  Scenario: Prevent proceeding to checkout when cart is empty
-    Given the shopper has an emty shopping cart
+  Scenario: Block checkout when the cart is empty
+    Given the shopper is signed in
+    And has an empty shopping cart
     When the shopper attempts to checkout
-    Then the shopper should be blocked on the cart page with a "checkout.empty_cart" error
+    Then the checkout should be blocked with a "checkout.empty_cart" error
 
   @negative @validation @TC-14-N2
-  Scenario Outline: Validate missing payment fields during checkout order placement
-    Given the shopper is logged and on the checkout payment page
-    When the shopper attempts to pay with a blank "<field_to_skip>"
+  Scenario Outline: Reject payment when required card details are missing
+    Given the shopper is on the payment page
+    When the shopper submits payment with a blank "<card_detail>"
     Then the payment should be rejected with a "checkout.missing_field_validation" error
 
     Examples:
-      | field_to_skip   |
+      | card_detail   |
       | Name on Card    |
       | Card Number     |
       | CVC             |
@@ -65,21 +69,27 @@ Feature: Checkout and Order Placement
       | Expiration Year |
 
   @negative @validation @TC-14-N3
-  Scenario Outline: Reject payment with invalid card structures
-    Given the shopper is logged and on the checkout payment page
-    When the shopper provides an invalid format "<invalid_value>" for the "<target_field>"
+  Scenario Outline: Reject payment when card details do not meet validation
+    Given the shopper is on the payment page
+    When the shopper submits payment with an invalid "<card_detail>" value of "<invalid_value>"
     Then the payment should be rejected with a "checkout.invalid_field_validation" error
+    And the shopper should be prompted to correct the "<card_detail>" field
 
     Examples:
-      | target_field | invalid_value |
-      | Card Number  | "ABCD-EFGH"   |
-      | CVC          | "XYZ"         |
+      | card_detail | invalid_value |
+      | Card Number  | ABCD-EFGH   |
+      | Card Number  | 123           |
+      | CVC          | XYZ         |
+      | CVC          | 12            |
+      | CVC          | 12345         |
+      | Expiration Month | 00           |
+      | Expiration Month | 13           |
 
   # --- EDGE CASES ---
 
   @edge-case @TC-14-E1
   Scenario: Handle extreme data length inside the checkout confirmation comment area
-    Given the shopper is logged and on the checkout summary page
+    Given the shopper is on the checkout summary page
     When the shopper submits a comment exceeding "10000" characters
     And the shopper completes the purchase
     Then the order invoice record should preserve the full text length
