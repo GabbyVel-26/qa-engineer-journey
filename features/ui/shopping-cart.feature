@@ -9,7 +9,7 @@ Feature: Shopping Cart Management
     Given the shopper is on the home page
 
   @smoke @TC-11
-  Scenario:
+  Scenario: Verify subscription in Cart page
     When the shopper navigates to the cart page
     And the shopper subscribes with configured test email in the footer
     Then a success message "You have been successfully subscribed!" should be displayed
