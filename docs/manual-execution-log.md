@@ -3,7 +3,7 @@
 Results of manually running the Gherkin scenarios against the anchor app.
 
 | Date | Feature file | Scenario (ID) | Result | Notes / bug link |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 2026-10-06 | features/ui/user-registration.feature | TC-01 | Pass | |
 | 2026-10-06 | features/ui/user-registration.feature | TC-02 | Pass | |
 | 2026-10-06 | features/ui/user-registration.feature | TC-03 | Pass | |
@@ -17,5 +17,5 @@ Results of manually running the Gherkin scenarios against the anchor app.
 | 2026-10-08 | features/ui/shopping-cart.feature | TC-17 | Pass | |
 | 2026-10-08 | features/ui/shopping-cart.feature | TC-20 | Pass | |
 | 2026-10-08 | features/ui/shopping-cart.feature | TC-22 | Pass | |
-| 2026-10-08 | features/ui/shopping-cart.feature | Edge-case-1 | Fail | Allowed set quantity negative numbers|
+| 2026-10-08 | features/ui/shopping-cart.feature | Edge-case-1 | Fail | Allowed set quantity negative numbers |
 | 2026-10-08 | features/ui/shopping-cart.feature | Edge-case-2 | Pass | |
