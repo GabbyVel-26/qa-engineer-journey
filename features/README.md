@@ -5,7 +5,7 @@ Test cases for the anchor app, written as Gherkin `.feature` files (test-as-code
 ## Structure
 
 | Folder | Content |
-|---|---|
+| --- | --- |
 | `ui/` | User-interface scenarios (later automated with Playwright + playwright-bdd) |
 | `api/` | API scenarios (Postman/Newman first, then automated) |
 
